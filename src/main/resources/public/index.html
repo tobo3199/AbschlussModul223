@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Punchclock Client</title>
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="script.js" type="application/javascript"></script>
+    </head>
+    <body>
+        <form id="fahrradForm">
+            <label for="fahrradType">Fahrrad Type</label>
+            <input type="text" name="fahrradType" id="fahrradType" required>
+            <label for="marke">Marke</label>
+            <input type="text" name="marke" id="marke" required>
+            <input type="submit" value="Save" />
+            <input type="reset" value="Cancel" />
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fahrrad Type</th>
+                    <th>Marke</th>
+                    <th>Actions</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="fahrradDisplay">
+                <tr>
+                    <td colspan="3">Loading...</td>
+                </tr>
+            </tbody>
+        </table>
+    <div>
+        <a href="/logout">logout</a>
+    </div>
+    </body>
+</html>
