@@ -29,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.GET, "/api/menu/items/**").permitAll() // GET requests don't need auth
+                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -37,7 +38,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .decoder(jwtDecoder())
                 .and()
                 .and()
-                .formLogin();
+                .formLogin()
+                .and()
+                .headers().frameOptions().sameOrigin()
+                .and()
+                .csrf().disable()
+                ;
 
     }
 

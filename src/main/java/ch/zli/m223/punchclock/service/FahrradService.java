@@ -14,17 +14,17 @@ public class FahrradService {
         this.fahrradRepository = fahrradRepository;
     }
 
-    public Fahrrad createEntry(Fahrrad fahrrad) {
+    public Fahrrad createFahrrad(Fahrrad fahrrad) {
         return fahrradRepository.saveAndFlush(fahrrad);
     }
 
     public List<Fahrrad> findAll() {
-        return fahrradRepository.findAll();
+        return fahrradRepository.getAll();
     }
 
-    public void deleteEntry(long id) { fahrradRepository.deleteById(id); }
+    public void deleteFahrrad(long id) { fahrradRepository.deleteById(id); }
     
-    public Fahrrad updateEntry(Fahrrad fahrrad) {
+    public Fahrrad updateFahrrad(Fahrrad fahrrad) {
         return fahrradRepository.save(fahrrad);
     }
 }

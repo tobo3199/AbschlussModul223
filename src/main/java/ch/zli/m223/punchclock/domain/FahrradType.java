@@ -18,11 +18,11 @@ public class FahrradType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type;
+    private String typ;
 
-    public FahrradType(Long id, String type) {
+    public FahrradType(Long id, String typ) {
         this.id = id;
-        this.type = type;
+        this.typ = typ;
     }
 
     public FahrradType() {
@@ -38,10 +38,10 @@ public class FahrradType {
     }
 
     public String getType() {
-        return type;
+        return typ;
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.typ = typ;
     }
 }

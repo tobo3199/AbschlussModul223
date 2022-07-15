@@ -1,15 +1,11 @@
 const URL = 'http://localhost:8081';
 let entries = [];
 let mode = 'create';
-let currentEntry;
-
-const dateAndTimeToDate = (dateString, timeString) => {
-    return new Date(`${dateString}T${timeString}`).toISOString();
-};
+let currentFahrrad;
 
 // API Requests
-const createEntry = (fahrrad) => {
-    fetch(`${URL}/entries`, {
+const createFahrrad = (fahrrad) => {
+    fetch(`${URL}/fahrrads`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -23,27 +19,27 @@ const createEntry = (fahrrad) => {
     });
 };
 
-const indexEntries = () => {
+const indexFahrrads = () => {
     fetch(`${URL}/fahrrads`, {
         method: 'GET'
     }).then((result) => {
         result.json().then((result) => {
-            entries = result;
-            renderEntries();
+            fahrrads = result;
+            renderFahrrads();
         });
     });
-    renderEntries();
+    renderFahrrads();
 };
 
-const deleteEntry = (id) => {
+const deleteFahrrad = (id) => {
     fetch(`${URL}/fahrrads/${id}`, {
         method: 'DELETE'
     }).then((result) => {
-        indexEntries();
+        indexFahrrads();
     });
 };
 
-const updateEntry = (fahrrad) => {
+const updateFahrrad = (fahrrad) => {
     fetch(`${URL}/fahrrads/${fahrrad.id}`, {
         method: 'PUT',
         headers: {
@@ -53,7 +49,7 @@ const updateEntry = (fahrrad) => {
     }).then((result) => {
         result.json().then((fahrrad) => {
             fahrrads = fahrrads.map((e) => e.id === fahrrad.id ? fahrrad : e);
-            renderEntries();
+            renderFahrrad();
         });
     });
 }
@@ -61,36 +57,38 @@ const updateEntry = (fahrrad) => {
 // Rendering
 const resetForm = () => {
     const fahrradForm = document.querySelector('#fahrradForm');
-    fahrrdForm.reset();
+    fahrradForm.reset();
     mode = 'create';
-    currentEntry = null;
+    currentFahrrad = null;
 }
 
 const saveForm = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const fahrrad = {};
-    fahrrad['checkIn'] = dateAndTimeToDate(formData.get('checkInDate'), formData.get('checkInTime'));
-    fahrrad['checkOut'] = dateAndTimeToDate(formData.get('checkOutDate'), formData.get('checkOutTime'));
+    fahrrad['fahrradType'] = formData.get("fahrradType");
+    fahrrad['marke'] = formData.get("marke");
 
     if (mode === 'create') {
-        createEntry(fahrrad);
+        createFahrrad(fahrrad);
     } else {
-        fahrrad.id = currentEntry.id;
-        updateEntry(fahrrad);
+        fahrrad.id = currentFahrrad.id;
+        updateFahrrad(fahrrad);
     }
     resetForm();
 }
 
-const editEntry = (fahrrad) => {
+const editFahrrad = (fahrrad) => {
     mode = 'edit';
-    currentEntry = fahrrad;
+    currentFahrrad = fahrrad;
 
     const fahrradForm = document.querySelector('#fahrradForm');
-    const checkInDateField = fahrradForm.querySelector('[name="fahrradType"]');
-    const checkInTimeField = fahrradForm.querySelector('[name="marke"]');
+    const checkFahrradTypeField = fahrradForm.querySelector('[name="fahrradType"]');
+    checkFahrradTypeField.value = fahrrad.fahrradType;
+    const checkMarke = fahrradForm.querySelector('[name="marke"]');
+    checkMarke.value = fahrrad.marke;
 
-}
+};
 
 const createCell = (text) => {
     const cell = document.createElement('td');
@@ -103,25 +101,25 @@ const createActions = (fahrrad) => {
 
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'Delete';
-    deleteButton.addEventListener('click', () => deleteEntry(fahrrad.id));
+    deleteButton.addEventListener('click', () => deleteFahrrad(fahrrad.id));
     cell.appendChild(deleteButton);
 
     const editButton = document.createElement('button');
     editButton.innerText = 'Edit';
-    editButton.addEventListener('click', () => editEntry(fahrrad));
+    editButton.addEventListener('click', () => editFahrrad(fahrrad));
     cell.appendChild(editButton);
 
     return cell;
 }
 
-const renderEntries = () => {
+const renderFahrrad = () => {
     const display = document.querySelector('#fahrradDisplay');
     display.innerHTML = '';
-    entries.forEach((fahrrad) => {
+    fahrrads.forEach((fahrrad) => {
         const row = document.createElement('tr');
         row.appendChild(createCell(fahrrad.id));
-        row.appendChild(createCell(new Date(fahrrad.checkIn).toLocaleString()));
-        row.appendChild(createCell(new Date(fahrrad.checkOut).toLocaleString()));
+        row.appendChild(createCell(fahrrad.fahrradType));
+        row.appendChild(createCell(fahrrad.marke));
         row.appendChild(createActions(fahrrad));
         display.appendChild(row);
     });
@@ -131,5 +129,5 @@ document.addEventListener('DOMContentLoaded', function(){
     const fahrradForm = document.querySelector('#fahrradForm');
     fahrradForm.addEventListener('submit', saveForm);
     fahrradForm.addEventListener('reset', resetForm);
-    indexEntries();
+    indexFahrrads();
 });

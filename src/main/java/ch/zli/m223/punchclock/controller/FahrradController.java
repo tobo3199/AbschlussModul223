@@ -19,25 +19,25 @@ public class FahrradController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Fahrrad> getAllEntries() {
+    public List<Fahrrad> getAllFahrrads() {
         return fahrradService.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Fahrrad createEntry(@Valid @RequestBody Fahrrad fahrrad) {
-        return fahrradService.createEntry(fahrrad);
+    public Fahrrad createFahrrad(@Valid @RequestBody Fahrrad fahrrad) {
+        return fahrradService.createFahrrad(fahrrad);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEntry(@PathVariable long id) {
-        fahrradService.deleteEntry(id);
+    public void deleteFahrrad(@PathVariable long id) {
+        fahrradService.deleteFahrrad(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Fahrrad updateEntry(@Valid @RequestBody Fahrrad fahrrad) {
-        return fahrradService.updateEntry(fahrrad);
+    public Fahrrad updateFahrrad(@Valid @RequestBody Fahrrad fahrrad) {
+        return fahrradService.updateFahrrad(fahrrad);
     }
 }
