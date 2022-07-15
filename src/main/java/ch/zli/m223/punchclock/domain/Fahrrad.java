@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+
 @Entity
 public class Fahrrad {
 
@@ -21,6 +22,9 @@ public class Fahrrad {
 
     @ManyToOne
     private Marke marke;
+
+    @ManyToOne
+    private FahrradBesitzer fahrradBesitzer;
 
     public Long getId() {
         return id;
@@ -44,5 +48,13 @@ public class Fahrrad {
 
     public void setMarke(Marke marke) {
         this.marke = marke;
+    }
+
+    public FahrradBesitzer getFahrradBesitzer() {
+        return fahrradBesitzer;
+    }
+
+    public void setFahrradBesitzer(FahrradBesitzer fahrradBesitzer) {
+        this.fahrradBesitzer = fahrradBesitzer;
     }
 }
