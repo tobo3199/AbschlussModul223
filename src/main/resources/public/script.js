@@ -1,10 +1,11 @@
 const URL = 'http://localhost:8081';
-let entries = [];
+let fahrrads = [];
 let mode = 'create';
 let currentFahrrad;
 
 // API Requests
 const createFahrrad = (fahrrad) => {
+    console.log(fahrrad)
     fetch(`${URL}/fahrrads`, {
         method: 'POST',
         headers: {
@@ -13,8 +14,8 @@ const createFahrrad = (fahrrad) => {
         body: JSON.stringify(fahrrad)
     }).then((result) => {
         result.json().then((fahrrad) => {
-            entries.push(fahrrad);
-            renderEntries();
+            fahrrads.push(fahrrad);
+            renderFahrrads();
         });
     });
 };
@@ -49,7 +50,7 @@ const updateFahrrad = (fahrrad) => {
     }).then((result) => {
         result.json().then((fahrrad) => {
             fahrrads = fahrrads.map((e) => e.id === fahrrad.id ? fahrrad : e);
-            renderFahrrad();
+            renderFahrrads();
         });
     });
 }
@@ -115,6 +116,7 @@ const createActions = (fahrrad) => {
 const renderFahrrads = () => {
     const display = document.querySelector('#fahrradDisplay');
     display.innerHTML = '';
+    console.log(fahrrads)
     fahrrads.forEach((fahrrad) => {
         const row = document.createElement('tr');
         row.appendChild(createCell(fahrrad.id));
