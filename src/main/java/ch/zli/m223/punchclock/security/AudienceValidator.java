@@ -12,10 +12,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Klasse:
+ * Klasse: AudienceValidator
  *
  * @author: Tobias Sauter
- * @version:
+ * @version: 15.07.2022
+ *
+ *
  */
 public class AudienceValidator implements OAuth2TokenValidator<Jwt> {
     private final String audience;

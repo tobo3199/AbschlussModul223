@@ -6,6 +6,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Klasse: FahrradService
+ * @author Tobias Sauter
+ * @version 15.07.2022
+ */
+
 @Service
 public class FahrradService {
     private FahrradRepository fahrradRepository;

@@ -5,7 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
 /**
- * Also see https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-cors
+ * Klasse: WebConfiguration
+ * @author Tobias Sauter
+ * @version 15.07.2022
+ *
+ * In diesem File werden allgemeine Web-Konfigurationen vorgenommen
  */
 @Configuration
 public class WebConfiguration {

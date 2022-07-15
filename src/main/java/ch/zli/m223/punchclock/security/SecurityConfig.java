@@ -11,10 +11,13 @@ import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.*;
 
 /**
- * Klasse:
+ * Klasse: SecurityConfig
  *
  * @author: Tobias Sauter
- * @version:
+ * @version: 15.07.2022
+ *
+ * Im Security Config wird definiert, wer auf welche Seiten zugriff hat. Weiteres ist hier der
+ * JWT-Decoder.
  */
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
