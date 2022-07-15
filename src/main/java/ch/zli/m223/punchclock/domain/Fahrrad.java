@@ -17,7 +17,6 @@ public class Fahrrad {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id")
     private FahrradType fahrradType;
 
     @ManyToOne

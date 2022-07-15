@@ -112,14 +112,14 @@ const createActions = (fahrrad) => {
     return cell;
 }
 
-const renderFahrrad = () => {
+const renderFahrrads = () => {
     const display = document.querySelector('#fahrradDisplay');
     display.innerHTML = '';
     fahrrads.forEach((fahrrad) => {
         const row = document.createElement('tr');
         row.appendChild(createCell(fahrrad.id));
-        row.appendChild(createCell(fahrrad.fahrradType));
-        row.appendChild(createCell(fahrrad.marke));
+        row.appendChild(createCell(fahrrad.fahrradType.type));
+        row.appendChild(createCell(fahrrad.marke.markenType));
         row.appendChild(createActions(fahrrad));
         display.appendChild(row);
     });
